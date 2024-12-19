@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-from .models import Customer
+from accounts.models import Customer
 
 class Stock(models.Model):
     id = models.IntegerField(primary_key=True)
