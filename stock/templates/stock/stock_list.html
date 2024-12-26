@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for stock in object_list %}
+    <div class="">
+        <div class="">
+            <h2>商品名: {{ stock.stock_name }}</h2>
+            <h3>値段: {{ stock.price }}</h3>
+        </div>
+        <h4>説明: {{ stock.disc }}</h4>
+    </div>
+    {% endfor %}
+{% endblock %}

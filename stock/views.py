@@ -25,3 +25,16 @@ class CreateStockView(CreateView):
 class UpdateStockView(UpdateView):
     template_name = "stock/stock_edit.html"
     model = Stock
+    
+
+    
+def index_view(request):
+    object_list = Stock.objects.order_by("-id")
+    
+   
+    
+    return render (
+        request,
+        "base.html",
+        {"object_list": object_list},
+    )
