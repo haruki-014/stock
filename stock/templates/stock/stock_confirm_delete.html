@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>在庫削除確認</h2>
+    </div>
+    <div class="card-body">
+        <p>「{{ object.stock_name }}」を削除してもよろしいですか？</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">削除</button>
+            <a href="{% url 'stock:list' %}" class="btn btn-secondary">キャンセル</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

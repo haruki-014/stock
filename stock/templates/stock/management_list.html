@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>在庫管理一覧</h2>
+    <a href="{% url 'stock:management_create' %}" class="btn btn-primary">新規登録</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>管理名</th>
+                <th>個数</th>
+                <th>商品名</th>
+                <th>顧客名</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for management in managements %}
+            <tr>
+                <td>{{ management.id }}</td>
+                <td>{{ management.name }}</td>
+                <td>{{ management.pieces }}</td>
+                <td>{{ management.stock_id.stock_name }}</td>
+                <td>{{ management.customer_id.username }}</td>
+                <td>
+                    <a href="{% url 'stock:management_update' management.pk %}" class="btn btn-sm btn-warning">編集</a>
+                    <a href="{% url 'stock:management_delete' management.pk %}" class="btn btn-sm btn-danger">削除</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %} 

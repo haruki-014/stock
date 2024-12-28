@@ -1,13 +1,38 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
-    {% for stock in object_list %}
-    <div class="">
-        <div class="">
-            <h2>商品名: {{ stock.stock_name }}</h2>
-            <h3>値段: {{ stock.price }}</h3>
-        </div>
-        <h4>説明: {{ stock.disc }}</h4>
-    </div>
-    {% endfor %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>在庫一覧</h2>
+    <a href="{% url 'stock:create' %}" class="btn btn-primary">新規作成</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>商品名</th>
+                <th>画像</th>
+                <th>価格</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+            <tr>
+                <td>{{ stock.stock_name }}</td>
+                <td>
+                    {% if stock.disc %}
+                        <img src="{{ stock.disc.url }}" alt="{{ stock.stock_name }}" style="max-height: 50px;">
+                    {% endif %}
+                </td>
+                <td>¥{{ stock.price }}</td>
+                <td>
+                    <a href="{% url 'stock:update' stock.pk %}" class="btn btn-sm btn-warning">編集</a>
+                    <a href="{% url 'stock:delete' stock.pk %}" class="btn btn-sm btn-danger">削除</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
